@@ -4,8 +4,10 @@ Gem::Specification.new do |spec|
   spec.summary        = "Payments with Payfast for Ruby on Rails apps in South Africa"
   spec.authors        = ["Blessing Muchaya"]
   spec.email          = "btmuchaya@gmail.com"
-  spec.require_paths  = ['lib']
-  spec.files          = Dir['lib/**/*']
   spec.homepage       = "https://rubygems.org/gems/payfast_za"
   spec.license        = "MIT"
+
+  spec.add_development_dependency "rails", ">= 6.0.0"
+
+  spec.files          = Dir['lib/**/*']
 end
