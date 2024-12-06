@@ -16,8 +16,6 @@ module Payfast
 
     private
 
-    def 
-
     def merchant_details
       { 
         merchant_id: Payfast.merchant_id, 
@@ -36,7 +34,6 @@ module Payfast
         email_address: params[:email],
         cell_number: params[:cell_number]
       }
-
     end
   
     # todo decide on adding the email confirmation attribute customer integers, and payment methods
