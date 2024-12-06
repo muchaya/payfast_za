@@ -7,8 +7,8 @@ module Payfast
 
       desc "Create Payfast configuration file"
 
-      def copy_views
-        directory "config/initializers/payfast", "config/initializers/payfast"
+      def copy_config
+        directory "config/initializers", "config/initializers"
       end
     end
   end
