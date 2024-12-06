@@ -8,5 +8,5 @@ Gem::Specification.new do |spec|
   spec.license        = "MIT"
   spec.files          = Dir["{config,lib}/**/*"]
 
-  spec.add_development_dependency "rails", ">= 6.0.0"
+  add_development_dependency 'rails', '~> 6.0', '>= 6.0.0'
 end

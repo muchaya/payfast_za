@@ -1,5 +1,6 @@
 require "payfast/attributes"
 require "payfast/client"
+require "payfast/errors"
 require "payfast/config"
 require "payfast/payment_builder"
 require "payfast/payment_methods"

@@ -18,7 +18,7 @@ module Payfast
       response = Net::HTTP.post(uri, payment_data, headers)
     
       if response.code =~ /^[4-5]/
-        raise PaymentError, "[PAYFAST] Error: Failed POST to #{uri}. HTTP #{response.code} - #{response.message}"
+        raise Payfast::PaymentError, "[PAYFAST] Error: Failed POST to #{uri}. HTTP #{response.code} - #{response.message}"
       else
         logger.info("[PAYFAST] COMPLETED POST to #{uri} - status: #{response.code}, message: #{response.message}")
       end
