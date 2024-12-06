@@ -3,7 +3,7 @@ module Payfast
     attr_reader :params
 
     def self.build(params)
-      new(payment_params).build
+      new(params).build
     end
 
     def initialize(params)
