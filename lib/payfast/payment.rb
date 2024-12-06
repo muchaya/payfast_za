@@ -1,12 +1,12 @@
 module Payfast
   class Payment
-    ATTRIBUTES = Payfast::Attributes.all_fields
+    ATTRIBUTES = Payfast::Attributes.all_fields.map(&:to_sym)
 
-    attr_reader *ATTRIBUTES
+    attr_reader(*ATTRIBUTES)
 
-    def initialize(*args)
+    def initialize(args = {})
       args.each do |k,v|
-        if ATTRIBUTES.include?(k.to_sym)
+        if ATTRIBUTES.include?(k)
           variable_name = "@#{k}"
           instance_variable_set(variable_name,v) unless v.nil?
         else
@@ -20,11 +20,11 @@ module Payfast
     end
 
     def success?
-      status == 'Ok'
+      !failed?
     end
 
     def failed?
-      !success
+      payment_identifier.nil?
     end 
   end
 end

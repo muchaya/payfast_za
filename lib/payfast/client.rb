@@ -14,23 +14,16 @@ module Payfast
 
     def create_payment
       logger.info("[PAYFAST] STARTED POST to #{uri}")
-    
 
-      response = Net::HTTP.post(uri, payment_identifier, headers)
+      response = Net::HTTP.post(uri, payment_data, headers)
     
       if response.code =~ /^[4-5]/
-        logger.error("[PAYFAST] FAILED POST to #{uri} - status: #{response.code}, message: #{response.message}")
+        raise PaymentError, "[PAYFAST] Error: Failed POST to #{uri}. HTTP #{response.code} - #{response.message}"
       else
         logger.info("[PAYFAST] COMPLETED POST to #{uri} - status: #{response.code}, message: #{response.message}")
       end
 
-      uuid = response[:location].split('/').last
-
-      payment = payment.new(payment_params.merge!(uuid: uuid))
-    
-    rescue Payfast::PaymentError => error
-      logger.error("[PAYFAST] EXCEPTION during POST to #{uri}: #{error.class} - #{error.message}")
-      raise
+      payment.new(raw_payment.merge(payment_identifier: payment_identifier(response)))
     end
 
     private 
@@ -39,17 +32,17 @@ module Payfast
       URI(Payfast.payment_url)
     end
 
-    def payment_identifier
+    def payment_data
       URI.encode_www_form(raw_payment.merge({signature: signature}))
+    end
+
+    def signature
+      Payfast::SignatureGenerator.new(raw_payment).digest
     end
 
     def raw_payment
       payment_builder.build(payment_params)
     end
-
-    def signature
-      Payfast::SignatureGenerator.new(payment_params).digest
-    end 
 
     def headers
       {'content-type': 'application/x-www-form-urlencoded'}
@@ -65,6 +58,10 @@ module Payfast
 
     def payment
       Payfast::Payment
+    end
+
+    def payment_identifier(response)
+      response[:location]&.split('/').last
     end
   end
 end

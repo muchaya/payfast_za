@@ -35,13 +35,17 @@ module Payfast
       ]
     }.freeze
 
+    PAYFAST_RESPONSE = [
+      'payment_identifier'
+    ]
+
     class << self
       def required_fields
         REQUIRED_FIELDS.values.flatten
       end
 
       def all_fields
-        (REQUIRED_FIELDS.values + OPTIONAL_FIELDS.values + CHOICE_FIELDS.values).flatten
+        (REQUIRED_FIELDS.values + OPTIONAL_FIELDS.values + CHOICE_FIELDS.values + PAYFAST_RESPONSE).flatten
       end
     end
   end
