@@ -20,8 +20,7 @@ module Payfast
     end
 
     def passphrase
-      #Payfast.passphrase
-      "tiffymuchaya"
+      Payfast.passphrase
     end
   end
 end
