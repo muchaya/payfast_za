@@ -1,5 +1,3 @@
-require 'payfast'
-
 #Use this hook to configure the parameters necessary for your payments to work
 #Uncomment all the commented configs and use values applicable to your own application
 #Payfast credentials can be obtained from the Paynow website 
