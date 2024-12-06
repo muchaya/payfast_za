@@ -6,8 +6,7 @@ Gem::Specification.new do |spec|
   spec.email          = "btmuchaya@gmail.com"
   spec.homepage       = "https://rubygems.org/gems/payfast_za"
   spec.license        = "MIT"
+  spec.files          = Dir["{config,lib}/**/*"]
 
   spec.add_development_dependency "rails", ">= 6.0.0"
-
-  spec.files          = Dir['lib/**/*']
 end
