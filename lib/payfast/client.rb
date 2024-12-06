@@ -56,7 +56,7 @@ module Payfast
     end
 
     def logger
-      Paynow::Config.logger
+      Payfast::Config.logger
     end
 
     def payment_builder
