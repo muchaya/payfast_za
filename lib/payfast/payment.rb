@@ -11,6 +11,7 @@ module Payfast
           instance_variable_set(variable_name,v) unless v.nil?
         else
           raise ArgumentError, "Unknown parameter: #{k}"
+        end
       end
     end
 
