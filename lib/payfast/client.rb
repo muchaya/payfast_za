@@ -36,7 +36,7 @@ module Payfast
     private 
 
     def uri
-      Payfast::Config.payment_url
+      URI(Payfast.payment_url)
     end
 
     def payment_identifier

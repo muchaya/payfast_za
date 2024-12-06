@@ -4,20 +4,19 @@ module Payfast
 
     attr_reader *ATTRIBUTES
 
-    def initialize(**kwargs)
-      kwargs.each do |key, value|
-        if ATTRIBUTES.include?(key.to_sym)
-          instance_variable_set("@#{key}", value)
+    def initialize(*args)
+      args.each do |k,v|
+        if ATTRIBUTES.include?(k.to_sym)
+          variable_name = "@#{k}"
+          instance_variable_set(variable_name,v) unless v.nil?
         else
-          raise ArgumentError, "Unknown parameter: #{key}"
-        end
+          raise ArgumentError, "Unknown parameter: #{k}"
       end
     end
 
-    def self.create(**kwargs)
-      Payfast::Config.client.create_payment(**kwargs)
+    def self.create(*args)
+      Payfast::Config.client.create_payment(*args)
     end
-
 
     def success?
       status == 'Ok'
