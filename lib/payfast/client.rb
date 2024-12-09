@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 
 module Payfast
   class Client
@@ -23,7 +24,9 @@ module Payfast
         logger.info("[PAYFAST] COMPLETED POST to #{uri} - status: #{response.code}, message: #{response.message}")
       end
 
-      payment.new(raw_payment.merge(payment_identifier: payment_identifier(response)))
+      JSON.parse(response.body)
+
+      #payment.new(raw_payment.merge(payment_identifier: payment_identifier(response)))
     end
 
     private 
@@ -45,7 +48,7 @@ module Payfast
     end
 
     def headers
-      {'content-type': 'application/x-www-form-urlencoded'}
+      { 'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json' }
     end
 
     def logger
