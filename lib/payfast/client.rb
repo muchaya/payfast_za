@@ -24,9 +24,9 @@ module Payfast
         logger.info("[PAYFAST] COMPLETED POST to #{uri} - status: #{response.code}, message: #{response.message}")
       end
 
-      JSON.parse(response.body)
+      endpoint_response = JSON.parse(response.body)
 
-      #payment.new(raw_payment.merge(payment_identifier: payment_identifier(response)))
+      payment.new(payload.merge(endpoint_response))
     end
 
     private 
@@ -36,14 +36,14 @@ module Payfast
     end
 
     def payment_data
-      URI.encode_www_form(raw_payment.merge({signature: signature}))
+      URI.encode_www_form(payload.merge({signature: signature}))
     end
 
     def signature
-      Payfast::SignatureGenerator.new(raw_payment).digest
+      Payfast::SignatureGenerator.new(payload).digest
     end
 
-    def raw_payment
+    def payload
       payment_builder.build(payment_params)
     end
 
@@ -61,10 +61,6 @@ module Payfast
 
     def payment
       Payfast::Payment
-    end
-
-    def payment_identifier(response)
-      response[:location]&.split('/').last
     end
   end
 end
