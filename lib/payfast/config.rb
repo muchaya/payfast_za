@@ -2,7 +2,7 @@ require "logger"
 
 module Payfast
   class << self
-    attr_accessor :merchant_id, :merchant_key, :passphrase, :payment_url, :cancel_url, :notify_url, :return_url
+    attr_accessor :merchant_id, :merchant_key, :passphrase, :payment_url, :cancel_url, :notify_url, :return_url, :payment_method
 
     def setup(&block)
       instance_eval(&block)

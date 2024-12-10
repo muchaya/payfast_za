@@ -6,12 +6,9 @@ module Payfast
 
     def initialize(args = {})
       args.each do |k,v|
-        if ATTRIBUTES.include?(k)
-          variable_name = "@#{k}"
-          instance_variable_set(variable_name,v) unless v.nil?
-        else
-          raise ArgumentError, "Unknown parameter: #{k}"
-        end
+        run_validations(k, v)
+        variable_name = "@#{k}"
+        instance_variable_set(variable_name,v) unless v.nil?
       end
     end
 
@@ -20,11 +17,30 @@ module Payfast
     end
 
     def success?
-      !failed?
+      status == '200' && message == 'OK'
     end
 
     def failed?
-      payment_identifier.nil?
-    end 
+      !success?
+    end
+
+    private
+
+    def run_validations(key, value)
+      filter_attribute(key)
+      check_payment_method(value) if key == :payment_method
+    end
+
+    def filter_attribute(key)
+      return if ATTRIBUTES.include?(key)
+
+      raise UnknownAttributeError, "Unknown attribute: #{key}"
+    end
+
+    def check_payment_method(value)
+      return if Payfast::PaymentMethods::ACCEPTED.keys.include?(value.to_sym) || value.nil?
+
+      raise UnknownValueError, "Unknown payment method: #{value}. Accepted methods are #{Payfast::PaymentMethods::ACCEPTED.keys.join(', ')}"
+    end
   end
 end

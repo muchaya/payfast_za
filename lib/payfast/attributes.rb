@@ -16,27 +16,43 @@ module Payfast
         'return_url',
         'cancel_url',
         'notify_url',
-        'fica_idnumber'
+        'fica_idnumber',
       ],
       customer: [
         'name_first',
-        'name_last'    
+        'name_last',
+        'email_address',
+        'cell_number'
       ],
       transaction: [
         'm_payment_id',
-        'item_description'
-      ]
-    }.freeze
-
-    CHOICE_FIELDS = {
-      customer: [
-        'email_address',
-        'cell_number'
+        'item_description',
+        'custom_int1',
+        'custom_int2',
+        'custom_int3',
+        'custom_int4',
+        'custom_int5',
+        'custom_str1',
+        'custom_str2',
+        'custom_str3',
+        'custom_str4',
+        'custom_str5'
+      ],
+      transaction_options: [
+        'email_confirmation'
+      ],
+      payment_methods: [
+        'payment_method'
       ]
     }.freeze
 
     PAYFAST_RESPONSE = [
-      'payment_identifier'
+      'uuid'
+    ],
+
+    HTTP_RESPONSE = [
+      'status',
+      'message'
     ]
 
     class << self
@@ -45,7 +61,7 @@ module Payfast
       end
 
       def all_fields
-        (REQUIRED_FIELDS.values + OPTIONAL_FIELDS.values + CHOICE_FIELDS.values + PAYFAST_RESPONSE).flatten
+        (REQUIRED_FIELDS.values + OPTIONAL_FIELDS.values + PAYFAST_RESPONSE + HTTP_RESPONSE).flatten
       end
     end
   end

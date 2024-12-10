@@ -11,7 +11,7 @@ module Payfast
     end
 
     def build
-      merchant_details.merge(customer_details, transaction_details).compact
+      merchant_details.merge(customer_details, transaction_details, payment_methods).compact
     end
 
     private
@@ -35,15 +35,35 @@ module Payfast
         cell_number: params[:cell_number]
       }
     end
-  
-    # todo decide on adding the email confirmation attribute customer integers, and payment methods
+
     def transaction_details
       {
         amount: params[:amount],
         item_name: params[:item_name],
         m_payment_id: params[:payment_id],
-        item_description: params[:description]
+        item_description: params[:description],
+        custom_int1: params[:metadata_int1],
+        custom_int2: params[:metadata_int2],
+        custom_int3: params[:metadata_int3],
+        custom_int4: params[:metadata_int4],
+        custom_int5: params[:metadata_int5],
+        custom_str1: params[:metadata_str1],
+        custom_str2: params[:metadata_str2],
+        custom_str3: params[:metadata_str3],
+        custom_str4: params[:metadata_str4],
+        custom_str5: params[:metadata_str5]
       }
+    end
+
+    def transaction_options
+      {
+        email_confirmation: params[:email_confirmation],
+        confirmation_address: Payfast.email_confirmation_address
+      }
+    end
+
+    def payment_methods
+      { payment_method: Payfast.payment_method }
     end
   end
 end

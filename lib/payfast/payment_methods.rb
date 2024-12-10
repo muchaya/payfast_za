@@ -1,6 +1,6 @@
 module Payfast
   class PaymentMethods
-    OPTIONS = {
+    ACCEPTED = {
       ef: 'EFT',
       cc: 'Credit card',
       dc: 'Debit card',

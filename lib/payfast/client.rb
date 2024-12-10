@@ -24,9 +24,11 @@ module Payfast
         logger.info("[PAYFAST] COMPLETED POST to #{uri} - status: #{response.code}, message: #{response.message}")
       end
 
-      endpoint_response = JSON.parse(response.body)
+      endpoint_response = JSON.parse(response.body).transform_keys(&:to_sym)
 
-      payment.new(payload.merge(endpoint_response))
+      response_hash = { uuid: endpoint_response[:uuid], status: response.code, message: response.message }
+
+      payment.new(payload.merge(response_hash))
     end
 
     private 
