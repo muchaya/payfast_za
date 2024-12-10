@@ -18,7 +18,7 @@ Payfast.setup do |config|
   #config.notify_url = Rails.application.credentials.payfast[:notify_url]
 
   # ==> Configure Payfast confirmation email, if you've set email confirmation to true
-  #config.email_confirmation_address = Rails.application.credentials.payfast[:confirmation_address]
+  #config.email_confirmation_address = Rails.application.credentials.payfast[:email_confirmation_address]
 
   # ==> Configure Payfast payment methods, if you only want to use a specific payment method
   #config.payment_method = Rails.application.credentials.payfast[:payment_method]
