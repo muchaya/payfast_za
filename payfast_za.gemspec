@@ -1,6 +1,8 @@
+require_relative "lib/payfast/version"
+
 Gem::Specification.new do |spec|
   spec.name           = "payfast_za"
-  spec.version        = "0.0.0"
+  spec.version        = Payfast::VERSION
   spec.summary        = "Payments with Payfast for Ruby on Rails apps in South Africa"
   spec.authors        = ["Blessing Muchaya"]
   spec.email          = "btmuchaya@gmail.com"
