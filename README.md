@@ -10,11 +10,13 @@ We've made a [sample rails app](https://github.com/muchaya/ticketfast) to demons
 1. Run `bundle add payfast_za`
 2. Run `rails g payfast:install`
 
-The generator will create a config file `config/initializers/payfast.rb`. Edit this file to set up your rails credentials for your environments. Do not forget to set up the actual credentials for each environment as shown in this example.
+The generator will create a config file `config/initializers/payfast.rb`. Edit this file to set up your rails credentials for your environments. Do not forget to set up the actual credentials for each environment.
 
 ### Initiating a Payment
 The following is an example of how to initiate a simple payment.
-`Payfast::Payment.create(email: 'example@mail.com', amount: '2.00', item_name: 'Bunny chow')`
+```
+Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', item_name: 'Bunny chow')
+```
 
 You can add more information for your payment, check the docs to see what other attributes you can add.
 
