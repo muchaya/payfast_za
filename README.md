@@ -1,8 +1,8 @@
-# Payfast ZA
+# Payfast ZA 
 
 The Payfast ZA gem simplifies the integration of Payfast onsite payments in Ruby on Rails apps.
 
-We've made a sample ruby app to demonstrate how to use this library. Copy and paste from it for the simplest use cases, and it might also help you to join the pieces in the documentation quickly.
+We've made a [sample rails app](https://github.com/muchaya/ticketfast) to demonstrate how to use this library. Copy and paste from it for the simplest use cases, and it might also help you to join the pieces in the documentation quickly.
 
 ## Installation:
 
@@ -25,14 +25,14 @@ Once you've initiated the payment, If everything is setup correctly, You should 
 1. Add the following onsite activation script to you application layout eg. `app/views/layouts/application.html.erb`
 `<script src="https://www.payfast.co.za/onsite/engine.js"></script>`
 
-2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. We highly recommend using StimulusJS as shown in the demo app.
+2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. The json response from the intiated payment will give you a `uuid`, `return_url` and `cancel_url`
 
 #### Method 1 - Using URLS
 ```j
   window.payfast_do_onsite_payment({
-    "uuid":"uuid-json-response",
-    "return_url":"<%= Payfast.return_url %>",
-    "cancel_url":"<%= Payfast.cancel_url %>"
+    "uuid":"uuid",
+    "return_url":"return_url",
+    "cancel_url":"cancel_url"
   });
 ```
 
@@ -52,7 +52,7 @@ Note that the return url and cancel url are optional and you can omit them while
 A call to the callback will be fired when the payment is successful or when the modal is closed by the user.
 
 ### Payment confirmation
-A payment notification will be sent to the notify_url you specified in your payfast config.
+A payment notification will be sent to the `notify_url` you specified in your payfast config.
 
 # Documentation
 For further informaton on how to use this library, check out the documentation.
