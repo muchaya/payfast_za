@@ -57,7 +57,7 @@ A call to the callback will be fired when the payment is successful or when the 
 ### Payment confirmation
 A payment notification will be sent to the `notify_url` you specified in your payfast config.
 
-# Documentation
+## Documentation
 For further informaton on how to use this library, check out the documentation.
 
 ## Contributing
