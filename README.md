@@ -2,6 +2,8 @@
 
 The Payfast ZA gem simplifies the integration of Payfast onsite payments in Ruby on Rails apps.
 
+We've made a sample ruby app to demonstrate how to use this library. Copy and paste from it for the simplest use cases, and it might also help you to join the pieces in the documentation quickly.
+
 ## Installation:
 
 ### Add the gem to your gemfile:
@@ -23,7 +25,7 @@ Once you've initiated the payment, If everything is setup correctly, You should 
 1. Add the following onsite activation script to you application layout eg. `app/views/layouts/application.html.erb`
 `<script src="https://www.payfast.co.za/onsite/engine.js"></script>`
 
-2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. We highly recommend using Stimulus JS and RequestJS to implement this in your rails app as shown here. [Example](https://github.com/muchaya/ticketfast/blob/main/app/javascript/controllers/payfast_controller.js)
+2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. We highly recommend using StimulusJS as shown in the demo app.
 
 #### Method 1 - Using URLS
 ```j
@@ -52,4 +54,14 @@ A call to the callback will be fired when the payment is successful or when the 
 ### Payment confirmation
 A payment notification will be sent to the notify_url you specified in your payfast config.
 
+# Documentation
+For further informaton on how to use this library, check out the documentation.
 
+## Contributing
+
+If you have an issue you'd like to submit, please do so using the issue tracker in GitHub. In order for us to help you in the best way possible, please be as detailed as you can. Or, you can alternatively open a PR. 
+
+
+## License
+
+Payfast is released under the [MIT License](https://opensource.org/licenses/MIT).
