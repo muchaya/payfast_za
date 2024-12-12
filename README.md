@@ -25,7 +25,8 @@ Once you've initiated the payment, If everything is setup correctly, You should 
 ### Trigger the payment modal
 
 1. Add the following onsite activation script to you application layout eg. `app/views/layouts/application.html.erb`
-`<script src="https://www.payfast.co.za/onsite/engine.js"></script>`
+
+<script src="https://www.payfast.co.za/onsite/engine.js"></script>
 
 2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. The json response from the intiated payment will give you a `uuid`, `return_url` and `cancel_url`
 
