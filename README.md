@@ -4,9 +4,10 @@ The Payfast ZA gem simplifies the integration of Payfast onsite payments in Ruby
 
 We've made a [sample rails app](https://github.com/muchaya/ticketfast) to demonstrate how to use this library. Copy and paste from it for the simplest use cases, and it might also help you to join the pieces in the documentation quickly.
 
-## Installation:
+### Installation
 
-### Add the gem to your gemfile:
+Add the gem to your gemfile and run the generator
+
 1. Run `bundle add payfast_za`
 2. Run `rails g payfast:install`
 
