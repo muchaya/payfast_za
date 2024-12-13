@@ -14,13 +14,20 @@ The generator will create a config file `config/initializers/payfast.rb`. Edit t
 
 ### Initiating a Payment
 The following is an example of how to initiate a simple payment.
+```ruby
+payment = Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', item_name: 'Bunny chow')
 ```
-Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', item_name: 'Bunny chow')
-```
+
+### Retrieving payment details
+Once you've initiated the payment, If everything is setup correctly, you should access payment details as follows. The details will be handy for us to make the online pyaments work.
+
+```ruby
+uuid = payment.uuid
+return_url = payment.return_url
+cancel_url = payment.cancel_url
+``` 
 
 You can add more information for your payment, check the docs to see what other attributes you can add.
-
-Once you've initiated the payment, If everything is setup correctly, You should get a JSON response with the Payfast uuid, which will be handy for us to make the onsite payment work.
 
 ### Trigger the payment modal
 
@@ -28,7 +35,7 @@ Once you've initiated the payment, If everything is setup correctly, You should 
 `<script src="https://www.payfast.co.za/onsite/engine.js"></script>`
 
 
-2. To eventually trigger the payment modal, we'll add a bit of javascript and use the JSON response we got when initializing the payment. There two ways to do this. The json response from the intiated payment will give you a `uuid`, `return_url` and `cancel_url`
+2. To eventually trigger the payment modal, we use a bit of javascript. We use the `uuid`, `return_url` and `cancel_url` from Payment object as indicated earlier. 
 
 #### Method 1 - Using URLS
 ```j
