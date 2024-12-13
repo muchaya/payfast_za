@@ -1,3 +1,5 @@
+require "payfast/attributes"
+require "payfast/payment"
 require "payfast/config"
 require "payfast/errors"
 
