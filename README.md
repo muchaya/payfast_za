@@ -18,6 +18,8 @@ The following is an example of how to initiate a simple payment.
 payment = Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', item_name: 'Bunny chow')
 ```
 
+You can add more attributes for your payment, check the [Docs](docs/1_payment_attributes.md) to see what other attributes you can add.
+
 ### Checking Payment status
 To check if the payment was successful, use `payment.success?` or `payment.failed?` to check for payment failure.
 
@@ -34,7 +36,6 @@ Once you've initiated the payment, If everything is setup correctly, you should 
   render json: { uuid: payment.uuid, return_url: payment.return_url, cancel_url: payment.cancel_url }
 ``` 
 
-You can add more information for your payment, check the docs to see what other attributes you can add.
 
 ### Trigger the payment modal
 
@@ -75,7 +76,8 @@ A payment notification will be sent to the `notify_url` you specified in your pa
 Applications using Payfast Onsite payments can only be served over HTTPS. The intergration will not work unless if your localhost is exposed to the internet. You can reach out for a tool like ngrok.
 
 ## Documentation
-For further informaton on how to use this library, check out the documentation.
+For further information on how to use this library, check out the documentation.
+1. [Payment Attributes](docs/1_payment_attributes.md) - For supported payment attributes and payment methods to use when creating a payment object. 
 
 ## Contributing
 
