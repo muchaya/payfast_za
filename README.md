@@ -19,16 +19,16 @@ payment = Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', it
 ```
 
 ### Checking Payment status
-To check if the payment was successful, use `payment.success?` or `payment.failed` to check for payment failure.
+To check if the payment was successful, use `payment.success?` or `payment.failed?` to check for payment failure.
 
 ```ruby
   if payment.success?
-    ... Do something
+    ... 
   end
 ```
 
 ### Retrieving payment details
-Once you've initiated the payment, If everything is setup correctly, you should access payment details as follows. The details will be handy for us to make the online payments work. We strongly recommend using something like StimulusJS and RequestJS as shown in the [sample rails app](https://github.com/muchaya/ticketfast).
+Once you've initiated the payment, If everything is setup correctly, you should access payment details as follows. The details will be handy for us to make the online payments work. We strongly recommend using something like [StimulusJS](https://stimulus.hotwired.dev) as shown in the [sample rails app](https://github.com/muchaya/ticketfast). So you can render json in a controlller applicable to your app.
 
 ```ruby
   render json: { uuid: payment.uuid, return_url: payment.return_url, cancel_url: payment.cancel_url }
