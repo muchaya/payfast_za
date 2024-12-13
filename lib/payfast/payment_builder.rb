@@ -38,7 +38,7 @@ module Payfast
 
     def transaction_details
       {
-        amount: params[:amount],
+        amount: sprintf('%.2f', params[:amount]),
         item_name: params[:item_name],
         m_payment_id: params[:payment_id],
         item_description: params[:description],
