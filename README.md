@@ -18,13 +18,20 @@ The following is an example of how to initiate a simple payment.
 payment = Payfast::Payment.create(email: 'example@mail.com', amount: '20.00', item_name: 'Bunny chow')
 ```
 
-### Retrieving payment details
-Once you've initiated the payment, If everything is setup correctly, you should access payment details as follows. The details will be handy for us to make the online pyaments work.
+### Checking Payment status
+To check if the payment was successful, use `payment.success?` or `payment.failed` to check for payment failure.
 
 ```ruby
-uuid = payment.uuid
-return_url = payment.return_url
-cancel_url = payment.cancel_url
+  if payment.success?
+    ... Do something
+  end
+```
+
+### Retrieving payment details
+Once you've initiated the payment, If everything is setup correctly, you should access payment details as follows. The details will be handy for us to make the online payments work. We strongly recommend using something like StimulusJS and RequestJS as shown in the [sample rails app](https://github.com/muchaya/ticketfast).
+
+```ruby
+  render json: { uuid: payment.uuid, return_url: payment.return_url, cancel_url: payment.cancel_url }
 ``` 
 
 You can add more information for your payment, check the docs to see what other attributes you can add.
@@ -63,6 +70,9 @@ A call to the callback will be fired when the payment is successful or when the 
 
 ### Payment confirmation
 A payment notification will be sent to the `notify_url` you specified in your payfast config.
+
+## Testing
+Applications using Payfast Onsite payments can only be served over HTTPS. The intergration will not work unless if your localhost is exposed to the internet. You can reach out for a tool like ngrok.
 
 ## Documentation
 For further informaton on how to use this library, check out the documentation.
